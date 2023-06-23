@@ -15,7 +15,7 @@ Clonez votre dépôt Git contenant le code source de votre application Angular.
 
 ```
 git clone https://github.com/leo-paul-ciron/ArchiWeb.git
-cd front-end
+cd ArchiWeb
 
 ```
 
@@ -24,6 +24,7 @@ cd front-end
 Installez les dépendances nécessaires pour votre application Angular.
 
 ```
+cd front-end
 npm install
 ```
 
