@@ -14,8 +14,8 @@ Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
 Clonez votre dépôt Git contenant le code source de votre application Angular.
 
 ```
-$ git clone https://github.com/leo-paul-ciron/ArchiWeb.git
-$ cd front-end
+git clone https://github.com/leo-paul-ciron/ArchiWeb.git
+cd front-end
 
 ```
 
@@ -24,7 +24,7 @@ $ cd front-end
 Installez les dépendances nécessaires pour votre application Angular.
 
 ```
-$ npm install
+npm install
 ```
 
 ### Étape 4 : Configuration du backend avec Express.js
@@ -32,14 +32,14 @@ $ npm install
 1. Ouvrez un autre terminal et accédez au dossier du backend.
 
 ```
-$ cd back-end
+cd back-end
 
 ```
 
 1. Installez les dépendances du backend.
 
 ```
-$ npm install
+npm install
 
 ```
 
@@ -48,14 +48,14 @@ $ npm install
 1. Dans le terminal du front-end, exécutez la commande suivante pour démarrer l'application Angular en mode de développement :
 
 ```
-$ npm start
+npm start
 
 ```
 
 1. Dans le terminal du back-end, exécutez la commande suivante pour démarrer le serveur Express.js :
 
 ```
-$ npm start
+npm start
 
 ```
 
