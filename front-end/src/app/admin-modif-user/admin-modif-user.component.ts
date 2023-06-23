@@ -1,10 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { AdminUserAddUserComponent } from '../admin-user-add-user/admin-user-add-user.component'
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ConfirmDialogDeleteComponent } from '../confirm-dialog-delete/confirm-dialog-delete.component';
+import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -14,9 +12,14 @@ import Swal from 'sweetalert2';
 })
 export class AdminModifUserComponent {
 
+  //on récupère les informations transmissent par le component parent
   @Input() utilisateurModif: string = "";
   @Input() affichageModifUser: boolean = true;
 
+  /*
+  * on créer un EventEmiter pour avertir le composant parent du changement
+  * de valeur de la variable.
+  */
   @Output() AfficherPageAdminEventEmitter = new EventEmitter<boolean>();
 
   constructor(private apiService: ApiService, private router: Router, private dialog: MatDialog) { }
@@ -33,14 +36,16 @@ export class AdminModifUserComponent {
     //récupération du type de compte dans la localStorage
     const Token : any = localStorage.getItem("token");
     const TokenDecode : any = jwt_decode(Token)
+
     this.typeCompte = TokenDecode.type;
     this.typeCompte = this.typeCompte.toLowerCase()
 
+    //Appel de la route http://localhost:3000/admin/:id
     this.apiService.RecupUserId(this.utilisateurModif).subscribe({
       next: (data) => {
         this.Utilisateurs = data
-    
-
+        
+        //Pré-selection du select-box en fonction du type du compte récupéré
         if (this.Utilisateurs.id_typeUtilisateur.nom === 'administrateur') {
           this.optn = "option1"
         }
@@ -52,20 +57,11 @@ export class AdminModifUserComponent {
             this.optn = "option3"
           }
         }
-
-        
       },
     });
 
   }
   
-
-  nom : string = ''
-  prenom : string = ''
-  email : string = ''
-  motDePasse : string = ''
-  idTypeUtilisateur : string = ''
-
   onSubmitModifUser(formulaire : any)
   {   
       //création d'un nouvelle utilisateur
@@ -78,8 +74,7 @@ export class AdminModifUserComponent {
         idUtilisateur : this.utilisateurModif,
       }; 
 
-     
-
+      //appel de la route : http://localhost:3000/updateUser/
       this.apiService.UpdateUser(utilisateur).subscribe({
         next: (data) => {
           

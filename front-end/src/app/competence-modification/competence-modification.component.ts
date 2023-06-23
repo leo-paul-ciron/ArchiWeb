@@ -11,9 +11,15 @@ import Swal from 'sweetalert2';
 })
 export class CompetenceModificationComponent {
 
+  //élément récupérer du component parent correspondant à l'id de la compétence à modifier
+  // et à la condition permettant l'affichage de la partie modification
   @Input() competenceModif: string = "";
   @Input() affichageModifCompetence: boolean = true;
 
+  /*
+  * on créer un EventEmiter pour avertir le composant parent du changement
+  * de valeur de la variable.
+  */
   @Output() AfficherPageAdminEventEmitter = new EventEmitter<boolean>();
 
   constructor(private apiService: ApiService, private router: Router) { }
@@ -22,16 +28,20 @@ export class CompetenceModificationComponent {
 
   afficherFormulaireAddUserBool : boolean = false;
   Competence : any = "";
-
+  nomCompetence : string = ''
+  niveauCompetence : number = 0
+  idUtilisateur : string = ""
 
   ngOnInit() {
       
     //récupération du type de compte dans la localStorage
     const Token : any = localStorage.getItem("token");
     const TokenDecode : any = jwt_decode(Token)
+
     this.typeCompte = TokenDecode.type;
     this.typeCompte = this.typeCompte.toLowerCase()
 
+    //appel de la route GET http://localhost:3000/competence/:id
     this.apiService.RecupCompetenceId(this.competenceModif).subscribe({
       next: (data) => {
         this.Competence = data      
@@ -39,14 +49,6 @@ export class CompetenceModificationComponent {
     });
 
   }
-  
-
-  nomCompetence : string = ''
-  niveauCompetence : number = 0
-  id_admin : string = '64523a3ba975dc50e7e3767d'
-  idUtilisateur : string = ""
-  
-  
   
   onSubmitModifCompetence(formulaire : any)
   {   
@@ -58,7 +60,7 @@ export class CompetenceModificationComponent {
         idCompetence : this.competenceModif
       }; 
 
-      console.log(competence)
+      //appel de la route POST http://localhost:3000/competence/updateCompetence
       this.apiService.UpdateCompetence(competence).subscribe({
         next: (data) => {
           

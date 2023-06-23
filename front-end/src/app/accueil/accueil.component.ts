@@ -20,15 +20,19 @@ export class AccueilComponent {
     //on initialise la page sur home
     this.Page = "home";
 
-    //récupération du type de compte dans la localStorage
+    //Récupération des informations stockées dans le local storage
     const Token : any = localStorage.getItem("token");
     const TokenDecode : any = jwt_decode(Token)
+
     this.typeCompte = TokenDecode.type;
     this.typeCompte = this.typeCompte.toLowerCase()
+
     this.Nom = TokenDecode.nom
+
     this.Prenom = TokenDecode.prenom
   }
 
+  //fonction de déconnexion
   logout()
   {
     localStorage.removeItem("token");

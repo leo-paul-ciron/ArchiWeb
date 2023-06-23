@@ -37,7 +37,7 @@ export class ApiService {
 
    /**
    * Envois des informations d'un utilisateur sur la route :
-   * http://localhost:3000/admin/addUser.
+   * http://localhost:3000/competence/add.
    * 
    * @param competenceJson 
    * @returns 

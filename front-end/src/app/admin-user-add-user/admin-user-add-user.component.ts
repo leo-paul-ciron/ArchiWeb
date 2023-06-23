@@ -11,7 +11,7 @@ import { ApiService } from '../api.service';
 
 export class AdminUserAddUserComponent {
 
-  //on récupère du parent
+  //on récupère l'élément envoyé par le component parent
   @Input() afficherFormulaireAddUserBool: boolean = true;
 
   /*
@@ -26,9 +26,6 @@ export class AdminUserAddUserComponent {
   motDePasse : string = ''
   idTypeUtilisateur : string = ''
  
-
- 
-
   constructor(private apiService: ApiService) { }
 
   // Affiche conditionel du formulaire
@@ -52,7 +49,7 @@ export class AdminUserAddUserComponent {
         idTypeUtilisateur: formulaire.value.idTypeUtilisateur
       };
 
-      //appel du service d'ajout d'utilisateur
+      //appel de la route : POST http://localhost:3000/admin/addUser
       this.apiService.AddUser(utilisateur).subscribe({
         next: (data) => {
           
@@ -65,8 +62,6 @@ export class AdminUserAddUserComponent {
           Swal.fire('Utilisateur Ajouté!');
         }
       });
-
-      
   }
   
 }

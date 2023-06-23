@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
 import { ApiService } from '../api.service';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogDeleteComponent } from '../confirm-dialog-delete/confirm-dialog-delete.component';
 import Swal from 'sweetalert2';
 
@@ -31,10 +31,13 @@ export class CreationCompetenceComponent {
     //récupération du type de compte dans la localStorage
     const Token : any = localStorage.getItem("token");
     const TokenDecode : any = jwt_decode(Token)
+
     this.typeCompte = TokenDecode.type;
     this.typeCompte = this.typeCompte.toLowerCase();
+
     this.idUtilisateur = TokenDecode.utilisateur
 
+    //appel de la route GET http://localhost:3000/competence
     this.apiService.GetCompetence().subscribe({
       next: (data) => {
         this.Competences = data   
@@ -50,10 +53,14 @@ export class CreationCompetenceComponent {
   onSubmitFormAddCompetence(event: boolean)
   {
     this.afficherFormulaireAddCompetenceBool = event;
+
+    //récupération des informations dans le local storage
     const Token : any = localStorage.getItem("token");
     const TokenDecode : any = jwt_decode(Token)
+
     this.idUtilisateur = TokenDecode.utilisateur
     
+    //appel de la route GET http://localhost:3000/competence
     this.apiService.GetCompetence().subscribe({
       next: (data) => {
         this.Competences = data
@@ -62,6 +69,7 @@ export class CreationCompetenceComponent {
     });
   }
 
+  //ouverture de la pop-up de confirmation de suppression
   openConfirmationDialog(idCompetence : string): void {
     
     const dialogRef = this.dialog.open(ConfirmDialogDeleteComponent);
@@ -69,6 +77,7 @@ export class CreationCompetenceComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // Action de suppression
+        //appel de la route DELETE http://localhost:3000/competence/delete/:id
         this.apiService.SuppressionCompetence(idCompetence).subscribe({
           next: (data) => {
             
@@ -77,6 +86,7 @@ export class CreationCompetenceComponent {
             Swal.fire("Erreur lors de la suppression de la compétence!");
           },
           complete: () => {
+            //appel de la route GET http://localhost:3000/competence
             this.apiService.GetCompetence().subscribe({
               next: (data) => {
                 this.Competences = data   
@@ -96,9 +106,5 @@ export class CreationCompetenceComponent {
       this.competenceModif = idCompetence
   }
 
-  logout()
-  {
-    localStorage.removeItem("token");
-    this.router.navigate(['/']);
-  }
+ 
 }
