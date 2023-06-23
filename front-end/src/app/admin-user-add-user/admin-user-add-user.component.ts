@@ -55,7 +55,7 @@ export class AdminUserAddUserComponent {
       //appel du service d'ajout d'utilisateur
       this.apiService.AddUser(utilisateur).subscribe({
         next: (data) => {
-          console.log(data);
+          
         },
         error: (error) => {
           Swal.fire("Erreur lors de l'ajout de l'utilisateur!");

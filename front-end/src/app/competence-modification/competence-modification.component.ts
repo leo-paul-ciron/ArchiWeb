@@ -34,9 +34,7 @@ export class CompetenceModificationComponent {
 
     this.apiService.RecupCompetenceId(this.competenceModif).subscribe({
       next: (data) => {
-        this.Competence = data
-        console.log(this.Competence);
-        
+        this.Competence = data      
       },
     });
 
@@ -63,7 +61,7 @@ export class CompetenceModificationComponent {
       console.log(competence)
       this.apiService.UpdateCompetence(competence).subscribe({
         next: (data) => {
-          console.log("je suis data : " + data);
+          
         },
         error: (error) => {
           Swal.fire("Erreur lors de l'ajout de la modification de la compétence!");

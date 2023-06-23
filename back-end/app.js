@@ -1327,7 +1327,7 @@ app.get('/etudiant/projet/competence',authenticateUser, async(req, res)=>{
         })
     })*/
   
-    let ResultatJson = ""
+    let ResultatJson = []
 
     possede.find({ idProjet: idProjet })
     .populate('idCompetence')
@@ -1351,7 +1351,7 @@ app.get('/etudiant/projet/competence',authenticateUser, async(req, res)=>{
     
         if (value.length > 0) {
             console.log("On est là");
-            ResultatJson += JSON.stringify(value);
+            ResultatJson.push(value);
         } else {
             console.log("On n'est pas là");
         }
@@ -1359,9 +1359,12 @@ app.get('/etudiant/projet/competence',authenticateUser, async(req, res)=>{
   
         // Poursuivez avec d'autres actions ici après que toutes les opérations soient terminées
         console.log("Toutes les opérations sont terminées");
-        console.log("Résultat final :", ResultatJson);
-        
-        res.end(ResultatJson)
+        console.log("++++++++++++++++++++++++++++++")
+        console.log("Résultat final :", resultats);
+        console.log("vs")
+        console.log(ResultatJson)
+        console.log("------------------------------")
+        res.end(JSON.stringify(resultats))
     })
     .catch(error => {
         console.error(error);

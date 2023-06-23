@@ -29,13 +29,11 @@ export class EtudiantCompetenceComponent {
     this.typeCompte = TokenDecode.type;
     this.typeCompte = this.typeCompte.toLowerCase();
     this.idUtilisateur = TokenDecode.utilisateur;
-    console.log(this.idUtilisateur)
+    
 
     this.apiService.CompetenceEtudiant({idEtudiant : this.idUtilisateur}).subscribe({
       next: (data) => {
-        console.log("resultat : " + this.idUtilisateur )
         this.Resultat = data
-        console.log(this.Resultat)
         
         Object.keys(this.Resultat).forEach((key) => {
           var value = this.Resultat[key];

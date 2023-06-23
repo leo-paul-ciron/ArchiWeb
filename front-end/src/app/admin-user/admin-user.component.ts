@@ -41,7 +41,7 @@ export class AdminUserComponent {
       this.apiService.GetUser().subscribe({
         next: (data) => {
           this.Utilisateurs = data
-          console.log(this.Utilisateurs);
+
         },
       });
 
@@ -63,7 +63,7 @@ export class AdminUserComponent {
       this.apiService.GetUser().subscribe({
         next: (data) => {
           this.Utilisateurs = data
-          console.log(this.Utilisateurs);
+          
         },
       });
     }
@@ -77,7 +77,7 @@ export class AdminUserComponent {
         // Effectuez l'action de suppression ici
         this.apiService.SupressionUserAdmin(idUtilisateur).subscribe({
           next: (data) => {
-            console.log(data);
+            
           },
           error: (error) => {
             Swal.fire("Erreur lors de la suppression de l'utilisateur!");
@@ -86,7 +86,7 @@ export class AdminUserComponent {
             this.apiService.GetUser().subscribe({
               next: (data) => {
                 this.Utilisateurs = data
-                console.log(this.Utilisateurs);
+                
               },
             });
             Swal.fire('Utilisateur supprimé!');
@@ -96,10 +96,7 @@ export class AdminUserComponent {
     });
   }
      
-    delete(recupUser : string)
-    {
-      alert("delete : " + recupUser)
-    }
+   
 
     modif(recupUser : string)
     {

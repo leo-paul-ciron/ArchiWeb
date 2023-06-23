@@ -31,12 +31,12 @@ export class UserGestionCompteComponent {
     this.typeCompte = TokenDecode.type;
     this.typeCompte = this.typeCompte.toLowerCase()
 
-    console.log(TokenDecode.utilisateur)
+    
 
     this.apiService.RecupUserId(TokenDecode.utilisateur).subscribe({
       next: (data) => {
         this.Utilisateurs = data
-        console.log(this.Utilisateurs);
+       
 
         if (this.Utilisateurs.id_typeUtilisateur.nom === 'administrateur') {
           this.optn = "option1"
@@ -49,8 +49,6 @@ export class UserGestionCompteComponent {
             this.optn = "option3"
           }
         }
-
-        console.log(this.optn)
       },
     });
 
@@ -81,11 +79,8 @@ export class UserGestionCompteComponent {
         idUtilisateur : TokenDecode.utilisateur,
       }; 
 
-      console.log(utilisateur)
-
       this.apiService.UpdateUser(utilisateur).subscribe({
         next: (data) => {
-          console.log("je suis data : " + data);
         },
         error: (error) => {
           Swal.fire("Erreur lors de l'ajout de l'utilisateur!");

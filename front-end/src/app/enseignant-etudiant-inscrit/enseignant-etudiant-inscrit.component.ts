@@ -36,7 +36,6 @@ export class EnseignantEtudiantInscritComponent {
     this.typeCompte = TokenDecode.type;
     this.typeCompte = this.typeCompte.toLowerCase();
     this.idUtilisateur = TokenDecode.utilisateur;
-    console.log(this.idUtilisateur)
 
     this.apiService.GetCoursEnseignant().subscribe({
       next: (data) => {
@@ -54,12 +53,10 @@ export class EnseignantEtudiantInscritComponent {
     //ensuite il faut avec le idProjet et le tableau des compétences récupérer précédement récupérer les résultats
     this.AffichageEtudiant = true
 
-    console.log(idProjet)
     this.ProjetId = idProjet
     this.apiService.GetEtudiantInscritProjet({idProjet : idProjet}).subscribe({
       next: (data) => {
         this.Inscript = data
-        console.log(data)
       },
     });
     
@@ -74,7 +71,6 @@ export class EnseignantEtudiantInscritComponent {
     this.apiService.GetEtudiantInscritProjetResultat(this.ProjetId, EtudiantId).subscribe({
       next: (data) => {
         this.Result = data
-        console.log(data)
 
         Object.keys(this.Result).forEach((key) => {
           var value = this.Result[key];

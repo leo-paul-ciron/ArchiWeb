@@ -30,7 +30,6 @@ export class CreationCoursComponent {
     this.apiService.GetCoursEnseignant().subscribe({
       next: (data) => {
         this.Cours = data
-        console.log(this.Cours);
       },
     });
 
@@ -47,7 +46,6 @@ export class CreationCoursComponent {
     this.apiService.GetCoursEnseignant().subscribe({
       next: (data) => {
         this.Cours = data
-        console.log(this.Cours);
       },
     });
   }
@@ -61,7 +59,6 @@ export class CreationCoursComponent {
         // Effectuez l'action de suppression ici
         this.apiService.DeleteCour(idUtilisateur).subscribe({
           next: (data) => {
-            console.log(data);
           },
           error: (error) => {
             Swal.fire("Erreur lors de la suppression du cour!");
@@ -70,7 +67,6 @@ export class CreationCoursComponent {
             this.apiService.GetCoursEnseignant().subscribe({
               next: (data) => {
                 this.Cours = data
-                console.log(this.Cours);
               },
             });
             Swal.fire('Cour supprimé!');

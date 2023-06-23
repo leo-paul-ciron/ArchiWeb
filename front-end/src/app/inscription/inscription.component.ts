@@ -30,7 +30,7 @@ export class InscriptionComponent {
     this.apiService.GetCoursEtudiant().subscribe({
       next: (data) => {
         this.Cours = data
-        console.log(this.Cours);
+       
       },
     });
 
@@ -52,11 +52,11 @@ export class InscriptionComponent {
     //appel du service d'ajout d'utilisateur
     this.apiService.InscriptionCour(suivre).subscribe({
       next: (data) => {
-        console.log(data);
+        
       },
       error: (error) => {
         Swal.fire("Erreur lors de l'inscription");
-        console.log(error)
+       
       },
       complete: () => {
         Swal.fire('Inscription réussi !');

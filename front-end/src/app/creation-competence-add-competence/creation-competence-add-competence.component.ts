@@ -36,7 +36,7 @@ export class CreationCompetenceAddCompetenceComponent {
      this.apiService.GetCompetence().subscribe({
        next: (data) => {
          this.Competences = data
-         console.log(this.Competences);
+        
        },
      });
   }
@@ -62,7 +62,7 @@ export class CreationCompetenceAddCompetenceComponent {
       this.selectedValues.splice(index, 1);
     }
     else{
-      alert(value);
+     
       this.selectedValues.push(value);
     }
 
@@ -92,16 +92,16 @@ export class CreationCompetenceAddCompetenceComponent {
         selectedValue : this.selectedValues
       };
 
-      console.log(competence);
+    
 
       //appel du service d'ajout d'utilisateur
       this.apiService.AddCompetence(competence).subscribe({
         next: (data) => {
-          console.log(data);
+          
         },
         error: (error) => {
           Swal.fire("Erreur lors de l'ajout de la compétence!");
-          console.log(error)
+         
         },
         complete: () => {
           this.FormAddCompetenceDisparition()

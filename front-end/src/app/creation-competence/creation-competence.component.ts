@@ -57,7 +57,7 @@ export class CreationCompetenceComponent {
     this.apiService.GetCompetence().subscribe({
       next: (data) => {
         this.Competences = data
-        console.log(this.Competences);
+       
       },
     });
   }
@@ -71,7 +71,7 @@ export class CreationCompetenceComponent {
         // Action de suppression
         this.apiService.SuppressionCompetence(idCompetence).subscribe({
           next: (data) => {
-            console.log(data);
+            
           },
           error: (error) => {
             Swal.fire("Erreur lors de la suppression de la compétence!");

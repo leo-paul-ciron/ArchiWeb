@@ -19,7 +19,7 @@ export class VisualisationCompetenceComponent {
   idUtilisateur : string = ""
   Resultat : any = "";
   valeurMaitrisse : number[] = []
-  
+  resultatFormat : any = []
   ngOnInit() {
     //récupération du type de compte dans la localStorage
     const Token : any = localStorage.getItem("token");
@@ -27,18 +27,23 @@ export class VisualisationCompetenceComponent {
     this.typeCompte = TokenDecode.type;
     this.typeCompte = this.typeCompte.toLowerCase();
     this.idUtilisateur = TokenDecode.utilisateur;
-    console.log(this.idUtilisateur)
-
+  
     this.apiService.VisualisationCompetence({idProjet : this.ProjetId,idEtudiant : this.idUtilisateur}).subscribe({
       next: (data) => {
-        console.log("resultat : " + this.idUtilisateur + " " + this.ProjetId)
+  
         this.Resultat = data
+        console.log("je suis la");
         console.log(this.Resultat)
-        
+
+
+
         Object.keys(this.Resultat).forEach((key) => {
-          var value = this.Resultat[key];
-          console.log(value)
-          console.log(value.niveauCompetence)
+
+          
+
+          this.resultatFormat.push(this.Resultat[key][0])
+          var value = this.Resultat[key][0];
+
           this.valeurMaitrisse.push(value.niveauCompetence)
         });
         
@@ -49,12 +54,11 @@ export class VisualisationCompetenceComponent {
 
   changementMaitrisseCompetence(index : number, resultatId : string)
   {
-    console.log(resultatId);
-    console.log(this.valeurMaitrisse[index])
+   
     
     this.apiService.ModifCompetence({idResultat: resultatId, niveauCompetence:this.valeurMaitrisse[index]}).subscribe({
       next: (data) => {
-        console.log(data)
+        
       },
     });
   }

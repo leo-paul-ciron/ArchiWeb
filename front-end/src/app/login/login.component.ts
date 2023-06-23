@@ -29,7 +29,6 @@ export class LoginComponent {
         motDePasse:formulaire.value.password
       }
 
-      console.log(Compte);
       //envois des éléments à l'api
       //appel du service d'ajout d'utilisateur
       this.apiService.Login(Compte).subscribe((data) => {

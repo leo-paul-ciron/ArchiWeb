@@ -39,7 +39,7 @@ export class AdminModifUserComponent {
     this.apiService.RecupUserId(this.utilisateurModif).subscribe({
       next: (data) => {
         this.Utilisateurs = data
-        console.log(this.Utilisateurs);
+    
 
         if (this.Utilisateurs.id_typeUtilisateur.nom === 'administrateur') {
           this.optn = "option1"
@@ -53,7 +53,7 @@ export class AdminModifUserComponent {
           }
         }
 
-        console.log(this.optn)
+        
       },
     });
 
@@ -78,11 +78,11 @@ export class AdminModifUserComponent {
         idUtilisateur : this.utilisateurModif,
       }; 
 
-      console.log(utilisateur)
+     
 
       this.apiService.UpdateUser(utilisateur).subscribe({
         next: (data) => {
-          console.log("je suis data : " + data);
+          
         },
         error: (error) => {
           Swal.fire("Erreur lors de l'ajout de l'utilisateur!");

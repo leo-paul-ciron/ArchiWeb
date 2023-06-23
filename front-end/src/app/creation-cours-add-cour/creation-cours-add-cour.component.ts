@@ -43,7 +43,6 @@ export class CreationCoursAddCourComponent {
     this.apiService.GetCompetence().subscribe({
       next: (data) => {
         this.Competences = data
-        console.log(this.Competences);
       },
     });
 
@@ -81,29 +80,19 @@ export class CreationCoursAddCourComponent {
 
       formulaire.value.id_admin = this.id_admin;
 
-      /*const jsonArray = JSON.stringify(this.selectedValues)
-  
-      console.log(jsonArray);
-      console.log("descirption cour "+ formulaire.value.descriptionCour);
-*/
-      console.log(this.selectedValues)
       const cour = {
         nomCour: formulaire.value.nomCour,
         descriptionCour: formulaire.value.descriptionCour,
         id_enseignant: this.id_admin,
         id_competence: this.selectedValues
       };
-  
-      console.log(cour);
 
       //appel du service d'ajout d'utilisateur
       this.apiService.AddCour(cour).subscribe({
         next: (data) => {
-          console.log(data);
         },
         error: (error) => {
           Swal.fire("Erreur lors de l'ajout du cour !");
-          console.log(error)
         },
         complete: () => {
           this.FormAddCompetenceDisparition()

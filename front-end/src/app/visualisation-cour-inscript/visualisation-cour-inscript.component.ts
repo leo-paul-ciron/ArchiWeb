@@ -30,12 +30,10 @@ export class VisualisationCourInscriptComponent {
     this.typeCompte = TokenDecode.type;
     this.typeCompte = this.typeCompte.toLowerCase();
     this.idUtilisateur = TokenDecode.utilisateur;
-    console.log(this.idUtilisateur)
 
     this.apiService.VisualisationCour().subscribe({
       next: (data) => {
         this.Cours = data
-        console.log(this.Cours);
       },
     });
 
@@ -58,7 +56,6 @@ export class VisualisationCourInscriptComponent {
         // Effectuez l'action de suppression ici
         this.apiService.Desinscription(idProjet).subscribe({
           next: (data) => {
-            console.log(data);
           },
           error: (error) => {
             Swal.fire("Erreur lors de la suppression de l'utilisateur!");
