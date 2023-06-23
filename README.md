@@ -14,8 +14,8 @@ Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
 Clonez votre dépôt Git contenant le code source de votre application Angular.
 
 ```
-$ git clone <URL_DU_DEPOT>
-$ cd <DOSSIER_DU_PROJET>
+$ git clone https://github.com/leo-paul-ciron/ArchiWeb.git
+$ cd front-end
 
 ```
 
@@ -24,22 +24,15 @@ $ cd <DOSSIER_DU_PROJET>
 Installez les dépendances nécessaires pour votre application Angular.
 
 ```
-$ cd <DOSSIER_DU_PROJET>
 $ npm install
-
 ```
-
-### Étape 3 : Configuration de MongoDB Atlas
-
-1. Connectez-vous à [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) et créez un nouveau cluster.
-2. Suivez les instructions fournies par MongoDB Atlas pour configurer votre cluster, y compris la création d'un utilisateur de base de données et la configuration des règles d'accès réseau.
 
 ### Étape 4 : Configuration du backend avec Express.js
 
 1. Ouvrez un autre terminal et accédez au dossier du backend.
 
 ```
-$ cd <DOSSIER_DU_PROJET>/backend
+$ cd back-end
 
 ```
 
@@ -50,27 +43,16 @@ $ npm install
 
 ```
 
-1. Créez un fichier `.env` à la racine du dossier backend et ajoutez les variables d'environnement suivantes :
-
-```
-MONGODB_URI=<URL_MONGODB_ATLAS>
-JWT_SECRET=<VOTRE_SECRET>
-
-```
-
-- `MONGODB_URI` : Remplacez `<URL_MONGODB_ATLAS>` par l'URL de connexion fournie par MongoDB Atlas.
-- `JWT_SECRET` : Remplacez `<VOTRE_SECRET>` par une clé secrète utilisée pour signer les jetons JWT.
-
 ### Étape 5 : Démarrage de l'application
 
-1. Dans le terminal du frontend, exécutez la commande suivante pour démarrer l'application Angular en mode de développement :
+1. Dans le terminal du front-end, exécutez la commande suivante pour démarrer l'application Angular en mode de développement :
 
 ```
 $ npm start
 
 ```
 
-1. Dans le terminal du backend, exécutez la commande suivante pour démarrer le serveur Express.js :
+1. Dans le terminal du back-end, exécutez la commande suivante pour démarrer le serveur Express.js :
 
 ```
 $ npm start
