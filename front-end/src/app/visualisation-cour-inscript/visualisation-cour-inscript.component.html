@@ -1,0 +1,18 @@
+<div>
+    <div *ngIf="!affichageCompetence" class="flex flex-wrap">
+        <div *ngFor="let cour of Cours" class="ml-10 mt-10">
+            <div class="bg-white font-semibold text-center rounded-3xl border shadow-lg p-10 max-w-xs">
+                <img class="mb-3 w-32 h-32 rounded-full shadow-lg mx-auto" src="https://resize.elle.fr/article_1280/var/plain_site/storage/images/loisirs/livres/news/voici-le-livre-le-plus-vendu-en-france-en-2022-et-ce-n-est-pas-un-roman-4085975/98031195-1-fre-FR/Voici-le-livre-le-plus-vendu-en-France-en-2022-et-ce-n-est-pas-un-roman.jpg" alt="photo de livres">
+                <h1 class="text-lg text-gray-700"> {{cour.idProjet.nom}} </h1>
+                <p class="text-xs text-gray-400 mt-4"> {{cour.idProjet.description}} </p>
+                <div class="flex flex-col justify-between">
+                    <button (click)="Etudier(cour.idProjet._id)" class="bg-indigo-600 px-4 py-2 mt-4 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide"> Etudier </button>
+                    <button mat-raised-button (click)="openConfirmationDialog(cour.idProjet._id)" class="bg-red-400 px-4 py-2 mt-4 rounded-3xl text-gray-700 font-semibold uppercase tracking-wide"> Désinscription </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="affichageCompetence">
+        <app-visualisation-competence [ProjetId]="ProjetId"></app-visualisation-competence>
+    </div>
+</div>

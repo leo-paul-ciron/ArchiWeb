@@ -1,0 +1,46 @@
+<div *ngIf="!AffichageEtudiant; else ElseBlock">
+    <div class="flex flex-wrap">
+        <h1>Projet(s)</h1>
+        <div *ngFor="let projet of Projets; let i = index" class="ml-10 mt-10" (click)='ClickProjet(projet._id)'>
+                <div class="bg-white font-semibold text-center rounded-3xl border shadow-lg p-10 max-w-xs">
+                <img class="mb-3 w-32 h-32 rounded-full shadow-lg mx-auto" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" alt="product designer">
+                <h1 class="text-lg text-gray-700"> {{projet.nom}} </h1>
+                <p class="text-xs text-gray-400 mt-4"> {{projet.description}} </p>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #ElseBlock>
+   
+    <i (click)="retourArriere()" class="fas fa-arrow-left"></i>
+   
+    <div *ngIf="!affichageNote; else BlockElse" class="flex flex-wrap">
+        <h1>Etudiant(s)</h1>
+        <div *ngFor="let inscr of Inscript; let i = index" class="ml-10 mt-10" (click)="visualisationNote(inscr.idEtudiant._id)">
+                <div class="bg-white font-semibold text-center rounded-3xl border shadow-lg p-10 max-w-xs">
+                <img class="mb-3 w-32 h-32 rounded-full shadow-lg mx-auto" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" alt="product designer">
+                <h1 class="text-lg text-gray-700"> {{inscr.idEtudiant.prenom}} </h1>
+                <p class="text-xs text-gray-400 mt-4"> {{inscr.idEtudiant.nom}} </p>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #BlockElse>
+   <h1>Résultat(s)</h1>
+    <div class="flex flex-wrap">
+        <div *ngFor="let result of Result; let i = index" class="ml-10 mt-10">
+                <div class="bg-white font-semibold text-center rounded-3xl border shadow-lg p-10 max-w-xs" [ngClass]="{
+                    'bg-red-300': valeurMaitrisse[i] <= 25,
+                    'bg-yellow-300': valeurMaitrisse[i] > 25 && valeurMaitrisse[i] <= 75,
+                    'bg-green-400': valeurMaitrisse[i] >= 76 && valeurMaitrisse[i] <=101
+                    }">
+                <img class="mb-3 w-32 h-32 rounded-full shadow-lg mx-auto" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" alt="product designer">
+                <h1 class="text-lg text-gray-700"> {{result.idCompetence.nom}} </h1>
+                <p class="text-xs text-gray-400 mt-4"> {{result.niveau}} </p>
+                <h3 class="text-sm text-gray-400 "> Maitrisse : {{valeurMaitrisse[i]}}%</h3>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
