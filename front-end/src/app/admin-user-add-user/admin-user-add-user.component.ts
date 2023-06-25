@@ -11,7 +11,7 @@ import { ApiService } from '../api.service';
 
 export class AdminUserAddUserComponent {
 
-  //on récupère l'élément envoyé par le component parent
+  //on récupère l'élément envoyé par le component parent correspondant à la condition d'affichage de cette page
   @Input() afficherFormulaireAddUserBool: boolean = true;
 
   /*

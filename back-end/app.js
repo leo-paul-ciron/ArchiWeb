@@ -99,7 +99,7 @@ const authenticateUser = (req, res, next) => {
  * POST /admin/addUser
  * ajout d'utilisateur par un compte admin
  */
-app.post('/admin/addUser',authenticateUser, async(req,res) => {
+app.post('/admin/addUser', async(req,res) => {
 
     const nom = req.body.nom;
     const prenom = req.body.prenom;
@@ -108,29 +108,7 @@ app.post('/admin/addUser',authenticateUser, async(req,res) => {
     const id_typeUtilisateur = req.body.idTypeUtilisateur;
     
     
-    let roleUtilisateur = ""
-    let FindUtilisateur = ""
-
-    // On vérifie que l'utilisateur est bien un administateur
-    try {
-        FindUtilisateur = await utilisateur.findById(req.session.user);
-        roleUtilisateur = FindUtilisateur.nom;
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Erreur serveur, administrateur non trouvé !" });
-    }
-
-    //On récupère le role de l'utilisateur
-    try {
-        const FindTypeUtilisateur = await typeUtilisateur.findById(FindUtilisateur.id_typeUtilisateur);
-        roleUtilisateur = FindTypeUtilisateur.nom;
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Erreur serveur, typeUtilisateur non trouvé !" });
-    }
-
-    
-    if (roleUtilisateur === "administrateur") {
+   if (req.session.typeCompte === "administrateur") {
       
         // création d'un sel unique
         const salt = crypto.randomBytes(16).toString('hex'); 
@@ -353,7 +331,7 @@ app.post('/updateUser',authenticateUser, async(req, res) => {
                 utilisateurModif.updateOne(
                     {
                         $set: {
-                            hash: hash
+                            hash: hashMdp
                         }
                     }
                 ).then(() => {
@@ -1080,25 +1058,8 @@ app.put('/cour/updateCour/:id',authenticateUser, async(req, res) => {
     let roleUtilisateur = ""
     let FindUtilisateur = ""
 
-     // On récupère l'administrateur par l'id
-     try {
-        FindUtilisateur = await utilisateur.findById(req.body.id_admin);
-        roleUtilisateur = FindUtilisateur.nom;
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Erreur serveur, administrateur non trouvé !" });
-    }
 
-    //On récupère le role de l'utilisateur
-    try {
-        const FindTypeUtilisateur = await typeUtilisateur.findById(FindUtilisateur.id_typeUtilisateur);
-        roleUtilisateur = FindTypeUtilisateur.nom;
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Erreur serveur, typeUtilisateur non trouvé !" });
-    }
-
-    if (roleUtilisateur === "enseignant") {
+    if (req.session.typeCompte === "enseignant") {
         const CompetenceModif = await competence.findById(req.params.id);
 
         console.log(CompetenceModif.nom)
@@ -1355,15 +1316,7 @@ app.get('/etudiant/projet/competence',authenticateUser, async(req, res)=>{
         } else {
             console.log("On n'est pas là");
         }
-    });
-  
-        // Poursuivez avec d'autres actions ici après que toutes les opérations soient terminées
-        console.log("Toutes les opérations sont terminées");
-        console.log("++++++++++++++++++++++++++++++")
-        console.log("Résultat final :", resultats);
-        console.log("vs")
-        console.log(ResultatJson)
-        console.log("------------------------------")
+    });      
         res.end(JSON.stringify(resultats))
     })
     .catch(error => {

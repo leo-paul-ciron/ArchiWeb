@@ -17,7 +17,7 @@
                     type="text"
                     name="nom"
                     id="nom"
-                    (ngModel)="nom"
+                    
                     [value]="Utilisateurs.nom"
                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                 />
@@ -36,7 +36,7 @@
                     name="prenom"
                     id="prenom"
                     [value]="Utilisateurs.prenom"
-                    (ngModel)="prenom"
+                    
                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                 />
                 </div>
@@ -54,7 +54,7 @@
                 name="email"
                 id="email"
                
-                (ngModel)="email"
+               
                 [value]="Utilisateurs.email"
                 class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
             />
@@ -71,7 +71,7 @@
                 name="motDePasse"
                 id="motDePasse"
                 placeholder="*****"
-                (ngModel)="motDePasse"
+                [value]="Utilisateurs.motDePasse"
                 class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
             />
             </div>
@@ -87,7 +87,6 @@
                     
                     name="idTypeUtilisateur"
                     id="idTypeUtilisateur"
-                    (ngModel)="idTypeUtilisateur"
                     class="w-full rounded-md h-14 border border-[#e0e0e0]  py-3 px-6 text-base font-medium text-[#6B7280] outline-none "
                 >
                     <option [selected]="optn === 'option1'" value="641c84cba79a3b81aac3b3fb">Admin</option>
